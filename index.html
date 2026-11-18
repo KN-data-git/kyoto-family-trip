@@ -763,6 +763,37 @@ body[data-screen=budget] main{padding-top:26px}
 .budget-footnote{margin-top:12px}.budget-section a{display:inline-block;min-height:36px;padding:7px 0;font-size:12px;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:359px){.budget-split{gap:12px}.budget-split>div+div{padding-left:12px}.budget-split strong{font-size:24px}.budget-total strong{font-size:32px}.bottom-nav button{font-size:10px}}
 @media(min-width:700px){.budget-screen{max-width:620px;margin:0 auto}.budget-total strong{font-size:42px}.budget-split strong{font-size:32px}}
+
+.bottom-nav{grid-template-columns:repeat(5,minmax(0,1fr))}
+body[data-screen=prep] .day-nav,body[data-screen=prep] .day-heading{display:none}
+body[data-screen=prep] main{padding-top:26px}
+.prep-heading h2{font-size:25px;font-weight:600;letter-spacing:-.7px}
+.prep-heading>p{margin-top:5px;color:var(--muted);font-size:13px}
+.prep-progress{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:24px 0 8px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.prep-progress strong{font-weight:500;font-size:15px}.prep-progress span{font-size:12px;color:var(--muted)}
+.prep-group{border-bottom:1px solid var(--border)}
+.prep-group>summary{cursor:pointer;display:flex;align-items:center;gap:10px;min-height:60px;list-style:none;font-size:16px;font-weight:600}
+.prep-group>summary::-webkit-details-marker{display:none}
+.prep-group>summary:after{content:'+';font-size:20px;color:var(--muted);font-weight:400;width:16px;text-align:center}
+.prep-group[open]>summary:after{content:'−'}
+.prep-count{margin-left:auto;color:var(--muted);font-size:12px;font-weight:400;white-space:nowrap}
+.prep-list{list-style:none;margin:0 0 12px;padding:0}
+.prep-list li+li{margin-top:0}
+.prep-item{padding:10px 0 12px;border-top:1px solid #eeede7}
+.prep-item:first-child{border-top:0;padding-top:0}
+.prep-item label{display:flex;align-items:flex-start;gap:12px;cursor:pointer;min-height:44px;padding-top:8px}
+.prep-item input{flex:none;width:21px;height:21px;margin:1px 0 0;accent-color:#354e5c;cursor:pointer}
+.prep-item input:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.prep-item label>span{min-width:0;display:block;font-size:15px;line-height:1.5}
+.prep-item small{display:block;font-size:12px;line-height:1.65;color:var(--muted);margin-top:5px;word-break:keep-all;overflow-wrap:anywhere}
+.prep-item a{display:inline-flex;align-items:center;min-height:36px;margin:1px 0 0 33px;font-size:12px}
+.prep-item.is-done label>span{color:var(--muted)}
+.prep-storage{font-size:12px;line-height:1.7;color:var(--muted);margin-top:18px}
+.prep-sources{margin-top:22px;color:var(--muted);font-size:12px}
+.prep-sources summary{cursor:pointer;min-height:44px;padding:10px 0}
+.prep-sources p{margin:0 0 10px;line-height:1.7}
+.prep-sources a{display:inline-block;margin-right:10px;min-height:36px;padding:8px 0}
+@media print{.prep-group:not([open])>.prep-list{display:block}.prep-item{break-inside:avoid}}
 </style><meta name="robots" content="noindex, nofollow"></head><body>
 <a class="skip-link" href="#main">일정으로 건너뛰기</a>
 <header class="app-header"><div class="header-inner">
@@ -857,6 +888,17 @@ body[data-screen=budget] main{padding-top:26px}
 <p class="budget-footnote">원화는 100엔＝850원 가정 · 실제 환율·수수료 별도<br>2026.11.18 가족 피드백 반영 · 사용 내역이 아닌 준비 예산</p>
 <details class="budget-section"><summary>가격 참고</summary><ul><li><a href="https://www.bread-espresso.jp/menu_pdf/arashiyama_menu.pdf" target="_blank" rel="noopener noreferrer">아라시야마 아침 메뉴</a></li><li><a href="https://soupcurryohmiya.com/menu/" target="_blank" rel="noopener noreferrer">수프카레 메뉴</a></li><li><a href="https://chikayado.jp/sukiyakipontocho?_src=corporate" target="_blank" rel="noopener noreferrer">치카라야마 메뉴·매장</a></li><li><a href="https://www.first-kimono.com/rental/plan7.php" target="_blank" rel="noopener noreferrer">기모노 어린이 플랜 참고</a></li><li><a href="https://www.city.kyoto.lg.jp/gyozai/page/0000249302.html" target="_blank" rel="noopener noreferrer">교토시 숙박세 안내</a></li><li><a href="https://toji.or.jp/exhibition/2026_autumn/" target="_blank" rel="noopener noreferrer">도지 야간 관람료</a></li><li><a href="https://www2.city.kyoto.lg.jp/kotsu/webguide/ja/fare/fare_bus.html" target="_blank" rel="noopener noreferrer">시내버스 요금</a></li></ul><p>공개 메뉴·요금을 참고한 계획값. 실제 주문·선택 플랜에 따라 달라집니다.</p></details>
 </section>
+<section id="prep" class="screen" role="tabpanel" aria-labelledby="nav-prep" hidden>
+<div class="prep-heading"><h2>여행 준비</h2><p>11월 25일 출발 · 가족 5명 · 캐리어 3개</p></div>
+<div class="prep-progress"><strong id="prep-total" aria-live="polite"></strong><span>준비되면 체크</span></div>
+<details class="prep-group" id="prep-before" open><summary>출발 전 확인<span class="prep-count"></span></summary><ul class="prep-list"><li class="prep-item"><label><input type="checkbox" data-prep="passports"><span>가족 5명 여권 확인<small>조카도 포함. 귀국일까지 유효한지, 항공권 영문명이 여권과 같은지 확인.</small></span></label></li><li class="prep-item"><label><input type="checkbox" data-prep="entry"><span>Visit Japan Web 등록<small>입국 절차를 미리 등록하고 가족 각자의 QR을 저장해두기.</small></span></label><a href="https://services.digital.go.jp/ko/visit-japan-web/" target="_blank" rel="noopener noreferrer">공식 등록 안내 ↗</a></li><li class="prep-item"><label><input type="checkbox" data-prep="haruka-details"><span>하루카 실제 예약편 확인<small>왕복 열차 시각·좌석·티켓 받는 방법을 누나에게 확인. 일정의 14:30·15:00는 아직 기준 시각.</small></span></label></li><li class="prep-item"><label><input type="checkbox" data-prep="flight-details"><span>항공편·터미널·수하물 확인<small>출발·귀국편 모두 확인. 캐리어 3개의 허용 무게와 가족 좌석도 함께 확인.</small></span></label></li><li class="prep-item"><label><input type="checkbox" data-prep="airport-transfer"><span>인천·청주공항 가는 방법 정하기<small>25일 인천 07:55 / 청주 09:55 출발. 집에서 나갈 시각과 간사이공항 합류 장소 정하기.</small></span></label></li><li class="prep-item"><label><input type="checkbox" data-prep="stay-details"><span>숙소 입실·짐 보관 확인<small>료칸 19시 체크인 마감·26일 짐 보관, 에어비앤비 열쇠·입실 안내 저장. 에어비앤비는 11시 짐 보관·15시경 입실 예정.</small></span></label></li><li class="prep-item"><label><input type="checkbox" data-prep="money"><span>엔화 환전·카드 준비<small>가족 공통 기준 현금 7만 엔 + 카드 13만 엔 예산. 쇼핑 별도. 카드 해외 결제와 비밀번호 확인.</small></span></label></li><li class="prep-item"><label><input type="checkbox" data-prep="dining"><span>5인 식사 자리 확인<small>27일 스키야키와 26일 수프카레는 예약 전. 예약할지 결정하고, 어려우면 대안 식당으로.</small></span></label></li></ul></details><details class="prep-group" id="prep-personal"><summary>각자 챙길 것<span class="prep-count"></span></summary><ul class="prep-list"><li class="prep-item"><label><input type="checkbox" data-prep="essentials"><span>여권·엔화·카드<small>여권 원본은 기내 가방에. 여권 사본은 원본과 따로 보관.</small></span></label></li><li class="prep-item"><label><input type="checkbox" data-prep="clothes"><span>겉옷·겹쳐 입을 옷·편한 신발<small>3박 4일 속옷·양말, 세면도구. 저녁 도지 관람 때 입을 옷도 챙기기.</small></span></label></li><li class="prep-item"><label><input type="checkbox" data-prep="medicine"><span>평소 먹는 약·개인 용품<small>여행 기간만큼의 약과 여유분, 안경 등. 약은 이름·용도를 확인할 수 있게 보관.</small></span></label></li></ul></details><details class="prep-group" id="prep-shared"><summary>공용 준비물<span class="prep-count"></span></summary><ul class="prep-list"><li class="prep-item"><label><input type="checkbox" data-prep="power"><span>일본용 어댑터·충전기·케이블<small>A타입 납작 2핀. 충전기에 100–240V 표시가 있는지 확인.</small></span></label><a href="https://faq.japan-travel.jnto.go.jp/en/plan/plug-and-electricity/" target="_blank" rel="noopener noreferrer">일본 전압·플러그 안내 ↗</a></li><li class="prep-item"><label><input type="checkbox" data-prep="battery"><span>보조배터리 — 기내 가방에<small>위탁 금지. 일본 출발편은 최대 2개·각 160Wh 이하, 기내에서 충전하거나 기기에 연결하지 않기. 항공사 승인·포장 조건도 확인.</small></span></label><a href="https://www.mlit.go.jp/report/press/kouku10_hh_000310.html" target="_blank" rel="noopener noreferrer">2026년 일본 항공 규정 ↗</a></li><li class="prep-item"><label><input type="checkbox" data-prep="daybag"><span>가벼운 외출 가방·작은 우산<small>물티슈·휴지·밴드·지퍼백·접이식 장바구니도 공용으로 한 세트.</small></span></label></li></ul></details><details class="prep-group" id="prep-child"><summary>조카 준비물<span class="prep-count"></span></summary><ul class="prep-list"><li class="prep-item"><label><input type="checkbox" data-prep="child-clothes"><span>여벌 옷·속옷·양말<small>외출 가방에 한 벌. 이동 중 바로 꺼낼 수 있게 따로 담기.</small></span></label></li><li class="prep-item"><label><input type="checkbox" data-prep="child-snack"><span>익숙한 간식·빈 물병<small>공항 대기·도보 이동 때 사용할 작은 분량. 물은 보안검색 후 채우기.</small></span></label></li><li class="prep-item"><label><input type="checkbox" data-prep="child-comfort"><span>작은 놀이·익숙한 물건<small>스티커북·작은 장난감 등. 유모차 없이 다니므로 짐은 가볍게.</small></span></label></li></ul></details><details class="prep-group" id="prep-last"><summary>출발 전날·당일<span class="prep-count"></span></summary><ul class="prep-list"><li class="prep-item"><label><input type="checkbox" data-prep="offline"><span>예약·입국 QR·연락처 저장<small>항공·하루카·숙소 안내와 보험증서·보험사 연락처를 오프라인으로. 보험 적용 대상도 가족별 확인.</small></span></label></li><li class="prep-item"><label><input type="checkbox" data-prep="checkin"><span>온라인 체크인·짐 무게 확인<small>항공사 체크인 시작 시간에 맞추기. 액체류·보조배터리의 기내 반입 조건을 마지막으로 확인.</small></span></label></li><li class="prep-item"><label><input type="checkbox" data-prep="weather"><span>교토 날씨 보고 옷 최종 조정<small>23–24일에 예보 확인. 비·저녁 야외 일정에 맞춰 겉옷과 우산 조정.</small></span></label></li><li class="prep-item"><label><input type="checkbox" data-prep="roaming-activation"><span>로밍 이용 방법·휴대폰 충전<small>신청한 사람·사용 기간·데이터 한도 확인. 도착 후 설정 방법을 미리 저장하고 휴대폰·배터리 충전.</small></span></label></li></ul></details><details class="prep-group" id="prep-booked"><summary>예약·결제 완료<span class="prep-count"></span></summary><ul class="prep-list"><li class="prep-item"><label><input type="checkbox" data-prep="paid-insurance" checked><span>여행자보험</span></label></li><li class="prep-item"><label><input type="checkbox" data-prep="paid-flights" checked><span>왕복 항공권</span></label></li><li class="prep-item"><label><input type="checkbox" data-prep="paid-roaming" checked><span>로밍 신청</span></label></li><li class="prep-item"><label><input type="checkbox" data-prep="paid-ryokan" checked><span>도게츠테이 1박</span></label></li><li class="prep-item"><label><input type="checkbox" data-prep="paid-airbnb" checked><span>에어비앤비 2박</span></label></li><li class="prep-item"><label><input type="checkbox" data-prep="paid-haruka" checked><span>하루카 왕복</span></label></li></ul></details>
+<p id="prep-storage" class="prep-storage">체크는 이 기기의 브라우저에 저장돼요.<br>가족 간 자동 공유는 되지 않아요.</p>
+<details class="prep-sources"><summary>확인 기준·공식 안내</summary>
+<p>예약·결제 완료는 가족이 알려준 내용 기준. 상세 시간·좌석·짐 보관은 별도 확인이 필요해요. 준비 안내 확인일: 2026. 11. 18.</p>
+<p>일본은 여권에 일률적인 ‘6개월 이상’ 잔여 기간을 요구하지 않아요. 여행 중 만료되지 않는지 확인하세요. Visit Japan Web은 입국 절차 사전 등록용이며, 동반 가족도 각자의 QR을 준비해두세요.</p>
+<a href="https://www.kr.emb-japan.go.jp/itpr_ko/visa_QnA.html" target="_blank" rel="noopener noreferrer">일본대사관 여권 안내 ↗</a>
+<a href="https://www.moj.go.jp/isa/06_00024.html" target="_blank" rel="noopener noreferrer">일본 입국 QR 안내 ↗</a>
+</details></section>
 <p class="page-foot">가족 5명 · 캐리어 3개 · 현지 시각 기준</p>
 </main>
 <nav class="bottom-nav" aria-label="화면 선택" role="tablist">
@@ -864,6 +906,7 @@ body[data-screen=budget] main{padding-top:26px}
 <button id="nav-transport" type="button" data-tab="transport" role="tab" aria-controls="transport" aria-selected="false" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="18" cy="19" r="2"/><path d="M8 5h7a4 4 0 0 1 0 8H9a4 4 0 0 0 0 8h4"/></svg><span>이동·식사</span></button>
 <button id="nav-map" type="button" data-tab="map" role="tab" aria-controls="map" aria-selected="false" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Zm6-3v15m6-12v15"/></svg><span>지도</span></button>
 <button id="nav-budget" type="button" data-tab="budget" role="tab" aria-controls="budget" aria-selected="false" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18m-7 4h7m-5 3h1"/></svg><span>예산</span></button>
+<button id="nav-prep" type="button" data-tab="prep" role="tab" aria-controls="prep" aria-selected="false" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="17" rx="2"/><path d="M9 3h6v3H9zM8 12l2 2 6-5m-8 8h8"/></svg><span>준비</span></button>
 </nav>
 <dialog id="detail-sheet" aria-labelledby="sheet-title"><div class="sheet-top"><button type="button" class="icon-button sheet-back" id="sheet-back" aria-label="이전 상세로" hidden>←</button><span class="sheet-handle" aria-hidden="true"></span><button class="icon-button" id="sheet-close" type="button" aria-label="상세 닫기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><div id="sheet-scroll" class="sheet-scroll"><p id="sheet-meta" class="eyebrow"></p><h2 id="sheet-title" tabindex="-1"></h2><div id="sheet-content"></div></div></dialog>
 <div id="announcement" class="sr-only" aria-live="polite"></div>
@@ -1776,13 +1819,13 @@ window.tripMapController = (() => {
   const hash=decodeURIComponent(location.hash.slice(1));
   const params=new URLSearchParams(hash);
   const day=Math.max(0,Math.min(3,(Number(params.get('day'))||25)-25));
-  const tab=['itinerary','transport','map','budget'].includes(params.get('tab'))?params.get('tab'):'itinerary';
+  const tab=['itinerary','transport','map','budget','prep'].includes(params.get('tab'))?params.get('tab'):'itinerary';
   if(data.aliases[hash]){
    const g=guides.find(g=>g.id===data.aliases[hash]);
    return {day:g.day??0,tab:'transport',detail:'g:'+hash,view:''};
   }
   if(/^guide2[5-8]$/.test(hash))return {day:Number(hash.slice(-2))-25,tab:'transport',detail:'',view:''};
-  if(['transport','transport-panel','map','itinerary','budget'].includes(hash))return {day:state.day,tab:hash==='transport-panel'?'transport':hash,detail:'',view:''};
+  if(['transport','transport-panel','map','itinerary','budget','prep'].includes(hash))return {day:state.day,tab:hash==='transport-panel'?'transport':hash,detail:'',view:''};
   if(hash==='sister-saved-list')return {day:state.day,tab:'transport',detail:'saved',view:''};
   if(hash==='earlier-alternatives')return {day:state.day,tab:'transport',detail:'info',view:''};
   return {day,tab,detail:params.get('detail')||'',view:params.get('view')||'',breakfast:params.get('breakfast')==='ogawa'?'ogawa':'sagan'};
@@ -1840,7 +1883,7 @@ window.tripMapController = (() => {
  function render(){
   document.body.dataset.screen=state.tab;
   if(state.day!==renderedDay){renderAgenda();renderedDay=state.day;}
-  for(const name of ['itinerary','transport','map','budget']){
+  for(const name of ['itinerary','transport','map','budget','prep']){
    $(name).hidden=name!==state.tab;
    $('nav-'+name).setAttribute('aria-selected',String(name===state.tab));
    $('nav-'+name).tabIndex=name===state.tab?0:-1;
@@ -1853,7 +1896,7 @@ window.tripMapController = (() => {
    if(nextView==='day27-morning'&&window.tripMapController.snapshot().focus?.breakfast!==(state.breakfast||'sagan'))window.tripMapController.setBreakfast(state.breakfast||'sagan');
   }
   renderedTab=state.tab;
-  $('announcement').textContent=state.tab==='budget'?'가족 전체 여행 예산':`11월 ${state.day+25}일 ${state.tab==='itinerary'?'일정':state.tab==='map'?'지도':'이동·식사'}`;
+  $('announcement').textContent=state.tab==='prep'?'여행 준비 체크리스트':state.tab==='budget'?'가족 전체 여행 예산':`11월 ${state.day+25}일 ${state.tab==='itinerary'?'일정':state.tab==='map'?'지도':'이동·식사'}`;
   renderSheet();
  }
  function openDetail(detail,extra={}){
@@ -1948,7 +1991,7 @@ window.tripMapController = (() => {
  dialog.addEventListener('click',e=>{if(e.target===dialog&&backdropDown)closeSheet();backdropDown=false;});
  document.querySelector('.bottom-nav').addEventListener('keydown',e=>{
   if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();
-  const tabs=['itinerary','transport','map','budget'],index=tabs.indexOf(state.tab),next=e.key==='Home'?0:e.key==='End'?3:(index+(e.key==='ArrowRight'?1:3))%4;
+  const tabs=['itinerary','transport','map','budget','prep'],index=tabs.indexOf(state.tab),next=e.key==='Home'?0:e.key==='End'?tabs.length-1:(index+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length;
   navigate({tab:tabs[next],detail:''},{top:true});$('nav-'+tabs[next]).focus();
  });
  document.querySelector('.day-nav').addEventListener('keydown',e=>{
@@ -1960,6 +2003,38 @@ window.tripMapController = (() => {
  window.addEventListener('popstate',()=>{sheetTrail=[];state=readRoute();render();});
  state=readRoute();render();
  window.tripApp={snapshot:()=>({...state,eventCount:events.length,guideCount:guides.length}),events};
+})();
+</script>
+<script>(() => {
+ 'use strict';
+ const root=document.getElementById('prep');
+ const checks=[...root.querySelectorAll('input[data-prep]')];
+ const key='kyoto-family-trip-prep-2026-v1';
+ let saved={};
+ const fallback=()=>{document.getElementById('prep-storage').textContent='이 브라우저에서는 체크 상태를 저장할 수 없어요. 현재 화면에서만 유지돼요.';};
+ try{
+  const parsed=JSON.parse(localStorage.getItem(key)||'{}');
+  if(parsed&&typeof parsed==='object'&&!Array.isArray(parsed))saved=parsed;
+ }catch{fallback();}
+ for(const input of checks){
+  if(typeof saved[input.dataset.prep]==='boolean')input.checked=saved[input.dataset.prep];
+ }
+ function refresh(){
+  for(const input of checks)input.closest('.prep-item').classList.toggle('is-done',input.checked);
+  const done=checks.filter(input=>input.checked).length;
+  document.getElementById('prep-total').textContent=`${done} / ${checks.length} 완료`;
+  for(const group of root.querySelectorAll('.prep-group')){
+   const items=[...group.querySelectorAll('input[data-prep]')];
+   group.querySelector('.prep-count').textContent=`${items.filter(input=>input.checked).length} / ${items.length}`;
+  }
+ }
+ root.addEventListener('change',event=>{
+  if(!event.target.matches('input[data-prep]'))return;
+  saved[event.target.dataset.prep]=event.target.checked;
+  try{localStorage.setItem(key,JSON.stringify(saved));}catch{fallback();}
+  refresh();
+ });
+ refresh();
 })();
 </script>
 </body></html>
